@@ -119,6 +119,7 @@
 (setq web-mode-enable-current-element-highlight t)
 (use-package php-mode)
 (add-hook 'web-mode-hook 'lsp)
+(add-hook 'js-mode-hook 'lsp)
 (add-hook 'css-mode-hook 'lsp)
 (add-hook 'php-mode-hook 'lsp)
 
@@ -172,7 +173,7 @@
 ;; show eol indicator
 (whitespace-newline-mode 1)
 
-(load-theme 'doom-one t)
+(load-theme 'doom-gruvbox t)
 
 ;;Set font size
 (buffer-face-mode 0)
@@ -211,6 +212,13 @@
   (set-face-attribute 'org-block nil :background "#221f22")
   (set-face-attribute 'org-block-end-line nil :foreground "#221f22")
   )
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (use-package org
   :hook (org-mode . efs/org-mode-setup)
@@ -439,14 +447,24 @@
 (use-package lsp-mode :commands lsp
    :config
    (add-hook 'csharp-mode 'lsp)
-   (define-key lsp-mode-map "C-]" 'lsp-find-definition)
+   (define-key lsp-mode-map (kbd "C-]") 'lsp-find-definition)
    )
  (use-package lsp-ui :commands lsp-ui-mode)
  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 (use-package lsp-treemacs
    :commands lsp-treemacs-errors-list
   )
- (use-package dap-mode :commands dap-mode)
+(use-package dap-mode :commands dap-mode)
+
+
+(add-hook 'go-mode-hook 'lsp)
+
+;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; (setq lsp-headerline-breadcrumb-enable nil
 ;;        gc-cons-threshold (* 100 1024 1024)
@@ -816,8 +834,10 @@ navwind mode
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("6b1abd26f3e38be1823bd151a96117b288062c6cde5253823539c6926c3bb178" default))
  '(package-selected-packages
-   '(php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
+   '(protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
