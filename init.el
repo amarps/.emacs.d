@@ -227,10 +227,36 @@
 )
 
 (use-package org-bullets
+  :ensure t
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/CatatanOrg")
+  (org-roam-completion-everywhere t)
+  (org-roam-capture-templates
+   '(("d" "default" plain "%?"
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
+	  :unnarrowed t)
+	 ("l" "programming language" plain
+	  "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+	  :unnarrowed t)))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+		 ("C-c n f" . org-roam-node-find)
+		 ("C-c n i" . org-roam-node-insert)
+		 :map org-mode-map
+		 ("C-M-i"   . completion-at-point)
+		 )
+  :config
+  (org-roam-setup)
+  )
 
 (use-package plantuml-mode
   :config
@@ -244,7 +270,9 @@
 (defun efs/org-mode-setup ()
   (org-indent-mode)
   (visual-line-mode)
-  (efs/org-font-setup))
+  (efs/org-font-setup)
+  (setq org-startup-with-inline-images t)
+  )
 
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 150
@@ -260,6 +288,16 @@
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((emacs-lisp . t) (python . t)))
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+(setenv "PYTHONIOENCODING" "utf-8")
+(add-to-list 'process-coding-system-alist '("python" . (utf-8 . utf-8)))
+(add-to-list 'process-coding-system-alist '("elpy" . (utf-8 . utf-8)))
+(add-to-list 'process-coding-system-alist '("flake8" . (utf-8 . utf-8)))
+
 ;; themes
 
 ;; (use-package doom-modeline
@@ -321,7 +359,6 @@
 (electric-layout-mode 1)
 (electric-pair-mode 1)
 (setq electric-pair-pairs '((?\< . ?\>)))
-
 
 (defvar my-cpp-other-file-alist
   '(("\\.cpp\\'" (".hpp" ".ipp"))
@@ -827,7 +864,6 @@ navwind mode
 (global-set-key (kbd "C-b") 'compile)
 
 (global-set-key (kbd "C-t") 'hydra-navtab/body)
-(global-linum-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -837,7 +873,7 @@ navwind mode
  '(custom-safe-themes
    '("6b1abd26f3e38be1823bd151a96117b288062c6cde5253823539c6926c3bb178" default))
  '(package-selected-packages
-   '(protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
+   '(elpy anaconda-mode org-roam protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
