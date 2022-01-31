@@ -139,7 +139,7 @@
 (setq org-hide-emphasis-markers t)
 
 ;; transparent background
-;(set-frame-parameter (selected-frame) 'alpha '(95 . 80))
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
 
 ;; save session when quit
 ;(desktop-save-mode 1)
@@ -172,8 +172,6 @@
 
 ;; show eol indicator
 (whitespace-newline-mode 1)
-
-(load-theme 'doom-gruvbox t)
 
 ;;Set font size
 (buffer-face-mode 0)
@@ -238,14 +236,14 @@
   :init
   (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory "~/CatatanOrg")
+  (org-roam-directory "~/brain-dump")
   (org-roam-completion-everywhere t)
   (org-roam-capture-templates
    '(("d" "default" plain "%?"
-	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
+	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+author: Amar Panji Senjaya\n")
 	  :unnarrowed t)
 	 ("l" "programming language" plain
-	  "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+	  "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n "
 	  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
 	  :unnarrowed t)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
@@ -316,6 +314,7 @@
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
+  (load-theme 'doom-vibrant t)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -838,6 +837,7 @@ navwind mode
 
 (global-set-key (kbd "<escape>") 'hydra-amaynav/body)
 (global-set-key (kbd "C-SPC") 'hydra-amaynav/body)
+(global-set-key (kbd "C-u") 'hydra-amaynav/body)
 
 (global-set-key (kbd "") 'hydra-navhjkl/body)
 (global-set-key (kbd "C-j") 'goto-line)
@@ -873,7 +873,7 @@ navwind mode
  '(custom-safe-themes
    '("6b1abd26f3e38be1823bd151a96117b288062c6cde5253823539c6926c3bb178" default))
  '(package-selected-packages
-   '(elpy anaconda-mode org-roam protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
+   '(rust-mode terraform-mode dockerfile-mode elpy anaconda-mode org-roam protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
