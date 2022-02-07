@@ -1,5 +1,3 @@
-#+title Emacs Configuration
-
 #+author: Amar Panji Senjaya
 #+email:  amarpanjis@gmail.com
 
