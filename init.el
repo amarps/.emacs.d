@@ -139,7 +139,7 @@
 (setq org-hide-emphasis-markers t)
 
 ;; transparent background
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
 
 ;; save session when quit
 ;(desktop-save-mode 1)
