@@ -175,8 +175,8 @@
 
 ;;Set font size
 (buffer-face-mode 0)
-(set-face-attribute 'default nil :font "Source Code Pro" :height 70)
-(set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height  70)
+(set-face-attribute 'default nil :font "Fira Code Retina" :height 70)
+(set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" :height  70)
 (set-face-attribute 'font-lock-function-name-face nil :weight 'semibold)
 (set-face-attribute 'font-lock-keyword-face nil :weight 'semibold)
 (set-face-attribute 'font-lock-function-name-face nil :weight 'semibold)
@@ -314,7 +314,7 @@
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  (load-theme 'doom-vibrant t)
+  (load-theme 'doom-gruvbox t)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -506,6 +506,9 @@
 ;;        gc-cons-threshold (* 100 1024 1024)
 ;;        read-process-output-max (* 1024 1024)
 ;;        treemacs-space-between-root-nodes nil)
+
+(use-package gotest
+  :ensure t)
 
 (use-package dotnet
   :ensure t
@@ -873,7 +876,7 @@ navwind mode
  '(custom-safe-themes
    '("6b1abd26f3e38be1823bd151a96117b288062c6cde5253823539c6926c3bb178" default))
  '(package-selected-packages
-   '(rust-mode terraform-mode dockerfile-mode elpy anaconda-mode org-roam protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
+   '(gotest rust-mode terraform-mode dockerfile-mode elpy anaconda-mode org-roam protobuf-mode lsp-python-ms python-mode go-imenu treemacs-projectile go-mode lua-mode php-mode ztree yasnippet-snippets yaml-mode winum which-key web-mode vterm visual-fill-column use-package sr-speedbar smooth-scrolling restclient-helm rainbow-delimiters projectile plantuml-mode perspective org-pdftools org-edit-latex org-bullets omnisharp neotree multiple-cursors magit lsp-ui lsp-p4 lsp-ivy ivy-rich highlight-indent-guides helm-lsp helm-google helm-company guru-mode google-this google-c-style global-tags ggtags general frames-only-mode flycheck-google-cpplint flycheck-clang-tidy exwm ewal-doom-themes evil eldoc-cmake eglot edwina dumb-jump dotnet doom-modeline dired-open dired-hide-dotfiles delight dap-mode csproj-mode counsel company-c-headers company-auctex command-log-mode color-theme-modern color-theme-buffer-local cmake-mode chess ccls buttons buffer-buttons autothemer auto-complete-auctex almost-mono-themes all-the-icons-ivy all-the-icons-dired ack)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
