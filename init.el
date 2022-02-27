@@ -475,8 +475,9 @@
   (load "/usr/share/clang/clang-rename.el")
   (require 'clang-rename)
   (define-key c++-mode-map (kbd "<tab>") 'clang-format-region)
-  (define-key c-mode-base-map (kbd "C-]") 'dumb-jump-go)
-  (define-key c-mode-base-map (kbd "C-}") 'dumb-jump-back)
+  (define-key c++-mode-map (kbd "C-]") 'eglot-find-declaration)
+  (define-key c++-mode-map (kbd "C-}") 'eglot-find-implementation)
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   )
 
 
