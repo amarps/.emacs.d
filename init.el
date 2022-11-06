@@ -600,6 +600,7 @@
   )
 
 (use-package multiple-cursors
+  :ensure t
   :diminish
   :bind (
 	 ("C-S-c C-S-c" . mc/edit-lines)
@@ -614,11 +615,13 @@
   :defer 0
   :delight
   :config
+  :ensure t
   (which-key-mode)
   (setq which-key-idle-delay 1))
 
 ;; key bind package
 (use-package hydra
+  :ensure t
   :defer t)
 
 (defhydra hydra-switch-buffer  (:timeout 40)
@@ -678,6 +681,7 @@ navwind mode
 (use-package dired-open
   :after dired
   :config
+  :ensure t
   (setq dired-open-extensions '(("png" . "sxiv")
 			       ("mkv" . "mpv")
 			       ("mp4" . "mpv")
@@ -686,6 +690,7 @@ navwind mode
 (use-package dired-hide-dotfiles
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :config
+  :ensure t
   (define-key dired-mode-map "H" 'dired-hide-dotfiles-mode))
 
 (use-package abbrev
@@ -693,6 +698,7 @@ navwind mode
 
 (use-package helm-config)
 (use-package helm
+  :ensure t
   :bind ("M-x" . helm-M-x)
   :bind
   (:map helm-map
